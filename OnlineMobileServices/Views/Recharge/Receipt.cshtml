@@ -1,0 +1,41 @@
+﻿@model OnlineMobileServices.Models.Transaction
+
+<div class="container mt-5">
+    <div class="card shadow-lg p-4 text-center">
+
+        <h2 class="text-success">
+            <i class="bi bi-check-circle-fill me-2"></i>
+            Payment Successful
+        </h2>
+
+        <hr />
+
+        <p>
+            <i class="bi bi-receipt me-1"></i>
+            Transaction ID: <b>@Model.TransactionId</b>
+        </p>
+
+        <p>
+            <i class="bi bi-phone me-1"></i>
+            Mobile: @Model.MobileNumber
+        </p>
+
+        <p>
+            <i class="bi bi-cash-stack me-1"></i>
+            Amount: Rs @Model.Amount
+        </p>
+
+        <p>
+            <i class="bi bi-calendar-event me-1"></i>
+            Date: @Model.Date.ToString("dd-MM-yyyy HH:mm")
+        </p>
+
+        <div class="mt-4">
+            <button onclick="window.print()" class="btn btn-primary">
+                <i class="bi bi-printer me-1"></i>
+                Print Receipt
+            </button>
+        </div>
+
+    </div>
+</div>

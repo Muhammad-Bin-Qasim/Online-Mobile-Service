@@ -1,0 +1,209 @@
+﻿@model OnlineMobileServices.Models.RechargePlan
+
+@{
+    ViewData["Title"] = "Payment";
+}
+
+<style>
+    body {
+        background-color: #f4f6f9;
+    }
+
+    .payment-card {
+        max-width: 500px;
+        margin: 60px auto;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        overflow: hidden;
+        background: white;
+    }
+
+    .payment-header {
+        background: linear-gradient(90deg, #1d4ed8, #2563eb);
+        color: white;
+        padding: 15px 20px;
+        font-weight: 600;
+        font-size: 18px;
+    }
+
+    .payment-body {
+        padding: 25px;
+    }
+
+    .amount-box {
+        background: #eef2ff;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+
+        .amount-box strong {
+            color: #1d4ed8;
+            font-size: 18px;
+        }
+
+    .form-control {
+        border-radius: 8px;
+        padding: 10px;
+    }
+
+    .pay-btn {
+        background-color: #16a34a;
+        color: white;
+        font-weight: 600;
+        border-radius: 8px;
+        padding: 12px;
+    }
+
+    .spinner-border {
+        display: none;
+        margin-left: 10px;
+    }
+
+    .success-animation {
+        display: none;
+        text-align: center;
+        padding: 30px;
+    }
+
+    .checkmark {
+        font-size: 60px;
+        color: #16a34a;
+        animation: pop 0.5s ease-in-out;
+    }
+
+    @@keyframes pop {
+        0% {
+            transform: scale(0);
+        }
+
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    .ssl-text {
+        text-align: center;
+        font-size: 13px;
+        color: gray;
+        margin-top: 15px;
+    }
+</style>
+
+<div class="card payment-card">
+
+    <div class="payment-header">
+        <i class="bi bi-shield-lock-fill me-2"></i>
+        Recharge Payment
+    </div>
+
+    <div class="payment-body" id="paymentForm">
+
+        <div class="amount-box">
+            <div>
+                <i class="bi bi-phone me-1"></i>
+                Mobile Number:
+                <strong>@ViewBag.Mobile</strong>
+            </div>
+
+            <div>
+                <i class="bi bi-cash-stack me-1"></i>
+                Recharge Amount:
+                <strong>Rs @Model.Amount.ToString("N2")</strong>
+            </div>
+        </div>
+
+        <form id="payForm" asp-action="ConfirmRecharge" method="post">
+            @Html.AntiForgeryToken()
+
+            <input type="hidden" name="planId" value="@Model.PlanId" />
+            <input type="hidden" name="mobile" value="@ViewBag.Mobile" />
+
+            <div class="mb-3">
+                <label class="form-label">
+                    <i class="bi bi-credit-card me-1"></i>
+                    Card Number
+                </label>
+                <input id="cardNumber"
+                       class="form-control"
+                       maxlength="19"
+                       placeholder="0000 0000 0000 0000"
+                       required />
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">
+                        <i class="bi bi-calendar-event me-1"></i>
+                        Expiry Date
+                    </label>
+                    <input class="form-control" placeholder="MM/YY" required />
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">
+                        <i class="bi bi-shield-lock me-1"></i>
+                        CVV
+                    </label>
+                    <input class="form-control" maxlength="3" placeholder="123" required />
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">
+                    <i class="bi bi-person me-1"></i>
+                    Card Holder Name
+                </label>
+                <input class="form-control" placeholder="Name on Card" required />
+            </div>
+
+            <button id="payBtn" type="submit" class="btn pay-btn w-100">
+                <i class="bi bi-lock-fill me-2"></i>
+                Pay Now Rs @Model.Amount.ToString("N2")
+                <span id="spinner" class="spinner-border spinner-border-sm"></span>
+            </button>
+        </form>
+
+        <div class="ssl-text">
+            <i class="bi bi-patch-check-fill me-1"></i>
+            256-bit Secure SSL Connection
+        </div>
+    </div>
+
+    <div id="successBox" class="success-animation">
+        <i class="bi bi-check-circle-fill checkmark"></i>
+        <h4 class="mt-3 text-success">Payment Successful!</h4>
+        <p>Redirecting to receipt...</p>
+    </div>
+
+</div>
+
+<script>
+    document.getElementById('cardNumber').addEventListener('input', function (e) {
+        let value = e.target.value.replace(/\D/g, '');
+        value = value.substring(0, 16);
+        let formatted = value.match(/.{1,4}/g);
+        e.target.value = formatted ? formatted.join(' ') : '';
+    });
+
+    document.getElementById("payForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        let btn = document.getElementById("payBtn");
+        let spinner = document.getElementById("spinner");
+
+        btn.disabled = true;
+        spinner.style.display = "inline-block";
+
+        setTimeout(function () {
+
+            document.getElementById("paymentForm").style.display = "none";
+            document.getElementById("successBox").style.display = "block";
+
+            setTimeout(function () {
+                e.target.submit();
+            }, 1500);
+
+        }, 2000);
+    });
+</script>

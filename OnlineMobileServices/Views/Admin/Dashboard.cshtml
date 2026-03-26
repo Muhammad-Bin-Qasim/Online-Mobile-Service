@@ -1,0 +1,137 @@
+﻿@model List<OnlineMobileServices.Models.Transaction>
+
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<style>
+    body {
+        background: #f3f4f6;
+    }
+
+    .admin-hero {
+        background: linear-gradient(135deg,#0d6efd,#2563eb);
+        color: white;
+        padding: 30px;
+        border-radius: 20px;
+        margin-bottom: 30px;
+        box-shadow: 0 15px 40px rgba(13,110,253,0.25);
+    }
+
+    .stat-card {
+        border: none;
+        border-radius: 20px;
+        padding: 25px;
+        color: white;
+        transition: 0.4s;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+        .stat-card:hover {
+            transform: translateY(-8px);
+        }
+
+    .table {
+        border-radius: 15px;
+        overflow: hidden;
+        background: white;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    .badge {
+        font-size: 13px;
+        padding: 6px 10px;
+    }
+
+    .btn-sm {
+        border-radius: 20px;
+    }
+</style>
+
+<div class="admin-hero">
+    <h3><i class="bi bi-speedometer2"></i> Admin Dashboard</h3>
+    <p class="mb-0">Manage users, transactions & revenue</p>
+</div>
+
+<div class="row mb-4">
+
+    <div class="col-md-3 mb-3">
+        <div class="stat-card bg-primary text-center">
+            <h6>Total Users</h6>
+            <h3>@ViewBag.TotalUsers</h3>
+            <a asp-action="Users" class="btn btn-light btn-sm mt-2">Manage</a>
+        </div>
+    </div>
+
+    <div class="col-md-3 mb-3">
+        <div class="stat-card bg-success text-center">
+            <h6>Total Revenue</h6>
+            <h3>Rs @String.Format("{0:N0}", ViewBag.TotalRevenue)</h3>
+        </div>
+    </div>
+
+    <div class="col-md-3 mb-3">
+        <div class="stat-card bg-warning text-dark text-center">
+            <h6>Total Transactions</h6>
+            <h3>@ViewBag.TotalTransactions</h3>
+        </div>
+    </div>
+
+    <div class="col-md-3 mb-3">
+        <div class="stat-card bg-dark text-center">
+            <h6>Today</h6>
+            <h3>@ViewBag.TodayTransactions</h3>
+        </div>
+    </div>
+
+</div>
+
+<div class="table-responsive">
+    <table class="table table-hover align-middle">
+        <thead class="table-dark">
+            <tr>
+                <th>Date</th>
+                <th>User</th>
+                <th>Mobile</th>
+                <th>Type</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var t in Model)
+            {
+                <tr>
+                    <td>@t.Date.ToString("dd MMM yyyy HH:mm")</td>
+                    <td>
+                        @(t.User != null ? t.User.Email : "Guest")
+                    </td>
+                    <td>@t.MobileNumber</td>
+                    <td>
+                        <span class="badge bg-primary">@t.TransactionType</span>
+                    </td>
+                    <td>Rs @t.Amount</td>
+                    <td>
+                        <span class="badge @(t.Status == "Paid" ? "bg-success" : t.Status == "Pending" ? "bg-warning text-dark" : "bg-danger")">
+                            @t.Status
+                        </span>
+                    </td>
+                    <td>
+                        <a asp-action="EditTransaction"
+                           asp-route-id="@t.TransactionId"
+                           class="btn btn-sm btn-warning">Edit</a>
+
+                        <form asp-action="DeleteTransaction"
+                              method="post"
+                              style="display:inline;">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="id" value="@t.TransactionId" />
+                            <button class="btn btn-sm btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

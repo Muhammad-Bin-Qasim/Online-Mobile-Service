@@ -1,0 +1,146 @@
+﻿@{
+    ViewData["Title"] = "About Us";
+}
+
+<style>
+    body {
+        background-color: #f3f4f6;
+    }
+
+    /* HERO SECTION */
+    .about-hero {
+        background: linear-gradient(135deg, #0d6efd, #2563eb);
+        color: white;
+        padding: 90px 20px;
+        text-align: center;
+        border-radius: 20px;
+        margin: 40px auto;
+        max-width: 1100px;
+        box-shadow: 0 15px 40px rgba(13,110,253,0.3);
+    }
+
+        .about-hero h1 {
+            font-weight: 700;
+        }
+
+    /* CONTENT SECTION */
+    .about-section {
+        max-width: 1100px;
+        margin: auto;
+        padding: 40px 15px 70px 15px;
+    }
+
+    .about-img {
+        border-radius: 20px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        transition: 0.4s;
+    }
+
+        .about-img:hover {
+            transform: scale(1.03);
+        }
+
+    /* FEATURE CARDS */
+    .about-card {
+        border-radius: 20px;
+        border: none;
+        padding: 30px;
+        background: white;
+        transition: 0.4s;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    }
+
+        .about-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px rgba(13,110,253,0.2);
+        }
+
+    .about-icon {
+        font-size: 45px;
+        color: #0d6efd;
+        margin-bottom: 15px;
+        transition: 0.3s;
+    }
+
+    .about-card:hover .about-icon {
+        transform: scale(1.2) rotate(8deg);
+        color: #2563eb;
+    }
+</style>
+
+<!-- HERO -->
+<div class="about-hero">
+    <h1>About Online Mobile Services</h1>
+    <p class="lead mt-3">Fast. Secure. Reliable.</p>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="about-section">
+
+    <div class="row align-items-center mb-5">
+
+        <div class="col-md-6">
+            <h3 class="fw-bold">Who We Are</h3>
+            <p class="text-muted mt-3">
+                Online Mobile Services is a secure digital platform providing
+                instant mobile recharge and postpaid bill payment solutions.
+                Our system ensures real-time processing with strong encryption
+                and reliable nationwide connectivity.
+            </p>
+
+            <p class="text-muted">
+                We are committed to delivering fast, seamless and secure
+                digital experiences for all customers.
+            </p>
+        </div>
+
+        <div class="col-md-6 text-center">
+            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475"
+                 class="img-fluid about-img"
+                 alt="Technology Image" />
+        </div>
+
+    </div>
+
+    <!-- FEATURES -->
+    <div class="row text-center g-4">
+
+        <div class="col-12 col-md-4">
+            <div class="about-card">
+                <div class="about-icon">
+                    <i class="bi bi-lightning-charge-fill"></i>
+                </div>
+                <h5 class="fw-bold">Fast Processing</h5>
+                <p class="text-muted mt-3">
+                    Instant recharge confirmation with real-time system updates.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-4">
+            <div class="about-card">
+                <div class="about-icon">
+                    <i class="bi bi-shield-lock-fill"></i>
+                </div>
+                <h5 class="fw-bold">Secure Payment</h5>
+                <p class="text-muted mt-3">
+                    256-bit encrypted secure transactions for maximum safety.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-4">
+            <div class="about-card">
+                <div class="about-icon">
+                    <i class="bi bi-globe2"></i>
+                </div>
+                <h5 class="fw-bold">Nationwide Service</h5>
+                <p class="text-muted mt-3">
+                    All major telecom operators supported across the country.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+</div>

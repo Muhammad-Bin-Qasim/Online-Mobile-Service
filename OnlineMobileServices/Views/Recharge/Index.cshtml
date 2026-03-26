@@ -1,0 +1,73 @@
+﻿@{
+    ViewData["Title"] = "Online Recharge";
+}
+
+<style>
+    body {
+        background-color: #f3f4f6;
+    }
+
+    .recharge-container {
+        max-width: 500px;
+        margin: 80px auto;
+    }
+
+    .recharge-card {
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .note {
+        background-color: #fef9c3;
+        border: 1px solid #fde68a;
+        padding: 12px;
+        border-radius: 8px;
+        font-size: 13px;
+        color: #92400e;
+        margin-bottom: 20px;
+    }
+
+    .btn-primary {
+        width: 100%;
+        padding: 12px;
+        border-radius: 8px;
+    }
+</style>
+
+<div class="recharge-container text-center">
+
+    <h2>Online Recharge</h2>
+    <p>Recharge your prepaid mobile instantly</p>
+
+    <div class="recharge-card text-start mt-4">
+
+        <h5>Enter Recharge Details</h5>
+        <p>Enter your prepaid mobile number to view available plans.</p>
+
+        <form asp-action="Plans" method="post">
+
+            <div class="mb-3">
+                <label class="form-label">Mobile Number</label>
+                <input name="mobile"
+                       class="form-control"
+                       maxlength="10"
+                       placeholder="Enter 10-digit number"
+                       required />
+            </div>
+
+            <div class="note">
+                <strong>Note:</strong> Make sure the mobile number is correct
+                before proceeding to select recharge plans.
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+                View Plans
+            </button>
+
+        </form>
+
+    </div>
+
+</div>

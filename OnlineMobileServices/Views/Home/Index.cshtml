@@ -1,0 +1,186 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<style>
+    /* HERO SECTION */
+    .hero-section {
+        background: #f3f4f6;
+    }
+
+    .hero-img {
+        max-height: 400px;
+    }
+
+    /* SERVICE CARDS */
+    .service-card {
+        border-radius: 20px;
+        border: none;
+        transition: 0.4s;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(13,110,253,0.2);
+        }
+
+    .service-icon {
+        font-size: 45px;
+        color: #0d6efd;
+    }
+
+    /* MOBILE FIX */
+    @@media (max-width: 768px) {
+        .hero-section
+
+    {
+        text-align: center;
+    }
+
+    .hero-img {
+        max-height: 280px;
+        margin-top: 20px;
+    }
+
+    .hero-section h1 {
+        font-size: 28px;
+    }
+
+    .btn-lg {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .services-heading {
+        font-size: 22px;
+    }
+
+    }
+</style>
+
+<!-- HERO SECTION -->
+<section class="hero-section py-5">
+    <div class="container">
+        <div class="row align-items-center">
+
+            <!-- LEFT SIDE -->
+            <div class="col-12 col-md-6 mb-4 mb-md-0" data-aos="fade-right">
+
+                <h1 class="fw-bold">
+                    Fast, Secure & Easy <br />
+                    <span class="text-primary">Mobile Recharge</span>
+                </h1>
+
+                <p class="mt-4 text-muted">
+                    Recharge prepaid mobile or pay postpaid bills instantly.
+                    Experience the simplest way to stay connected.
+                </p>
+
+                <div class="mt-4 d-flex flex-column flex-md-row gap-2">
+                    <a class="btn btn-primary btn-lg"
+                       asp-controller="Recharge"
+                       asp-action="Index">
+                        Recharge Now
+                    </a>
+
+                    <a class="btn btn-outline-primary btn-lg"
+                       asp-controller="Account"
+                       asp-action="Index">
+                        Manage Account
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- RIGHT IMAGE -->
+            <div class="col-12 col-md-6 text-center" data-aos="zoom-in">
+                <img src="~/images/hero-mobile.png"
+                     class="img-fluid hero-img"
+                     alt="Mobile Service" />
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- SERVICES SECTION -->
+<section class="services-section py-5">
+
+    <div class="container">
+
+        <h2 class="services-heading text-center mb-5 fw-bold">
+            OUR SERVICES
+        </h2>
+
+        <div class="row g-4">
+
+            <!-- CARD 1 -->
+            <div class="col-12 col-md-4">
+                <div class="card service-card text-center p-4 h-100">
+
+                    <div class="service-icon mb-3">
+                        <i class="bi bi-phone"></i>
+                    </div>
+
+                    <h4>Prepaid Recharge</h4>
+
+                    <p class="text-muted mt-3">
+                        Instant recharge for all networks with best data and talktime plans.
+                    </p>
+
+                    <a class="btn btn-primary mt-3"
+                       asp-controller="Recharge"
+                       asp-action="Index">
+                        Recharge Now →
+                    </a>
+                </div>
+            </div>
+
+            <!-- CARD 2 -->
+            <div class="col-12 col-md-4">
+                <div class="card service-card text-center p-4 h-100">
+
+                    <div class="service-icon mb-3">
+                        <i class="bi bi-credit-card"></i>
+                    </div>
+
+                    <h4>Postpaid Bill Payment</h4>
+
+                    <p class="text-muted mt-3">
+                        Pay your monthly bills securely with instant confirmation.
+                    </p>
+
+                    <a class="btn btn-primary mt-3"
+                       asp-controller="Bill"
+                       asp-action="Index">
+                        Pay Bill →
+                    </a>
+                </div>
+            </div>
+
+            <!-- CARD 3 -->
+            <div class="col-12 col-md-4">
+                <div class="card service-card text-center p-4 h-100">
+
+                    <div class="service-icon mb-3">
+                        <i class="bi bi-person-circle"></i>
+                    </div>
+
+                    <h4>Account Management</h4>
+
+                    <p class="text-muted mt-3">
+                        Track transactions, manage profile and control services easily.
+                    </p>
+
+                    <a class="btn btn-primary mt-3"
+                       asp-controller="Account"
+                       asp-action="Index">
+                        Manage →
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

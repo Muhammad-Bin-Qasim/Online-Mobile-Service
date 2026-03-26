@@ -1,0 +1,156 @@
+﻿@model OnlineMobileServices.Models.ApplicationUser
+
+@{
+    ViewData["Title"] = "My Account";
+}
+
+<style>
+    body {
+        background-color: #f3f4f6;
+    }
+
+    .account-container {
+        max-width: 900px;
+        margin: 60px auto;
+    }
+
+    .account-hero {
+        background: linear-gradient(135deg, #0d6efd, #2563eb);
+        color: white;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 15px 40px rgba(13,110,253,0.25);
+        margin-bottom: 30px;
+    }
+
+    .account-card {
+        background: white;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+        transition: 0.4s;
+    }
+
+        .account-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 50px rgba(13,110,253,0.2);
+        }
+
+    .info-row {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+        font-size: 16px;
+    }
+
+    .info-icon {
+        font-size: 20px;
+        color: #0d6efd;
+        margin-right: 10px;
+    }
+
+    .btn-edit {
+        border-radius: 30px;
+        padding: 8px 20px;
+    }
+
+    .section-title {
+        font-weight: 600;
+        margin-top: 25px;
+        margin-bottom: 15px;
+    }
+
+    .form-switch .form-check-input {
+        width: 3rem;
+        height: 1.5rem;
+        cursor: pointer;
+    }
+
+    .btn-primary {
+        border-radius: 30px;
+        padding: 10px 25px;
+    }
+
+    .alert-success {
+        border-radius: 15px;
+    }
+</style>
+
+<div class="account-container">
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success shadow-sm">
+            @TempData["Success"]
+        </div>
+    }
+
+    <!-- HEADER -->
+    <div class="account-hero">
+        <h3><i class="bi bi-person-circle"></i> Welcome, @Model.FullName</h3>
+        <p class="mb-0">Manage your profile & services easily.</p>
+    </div>
+
+    <!-- MAIN CARD -->
+    <div class="account-card">
+
+        <h5 class="section-title">
+            <i class="bi bi-person-lines-fill text-primary"></i> Personal Details
+        </h5>
+
+        <div class="info-row">
+            <i class="bi bi-person info-icon"></i>
+            <strong>Name:</strong>&nbsp; @Model.FullName
+        </div>
+
+        <div class="info-row">
+            <i class="bi bi-envelope info-icon"></i>
+            <strong>Email:</strong>&nbsp; @Model.Email
+        </div>
+
+        <div class="info-row">
+            <i class="bi bi-phone info-icon"></i>
+            <strong>Mobile:</strong>&nbsp; @Model.PhoneNumber
+        </div>
+
+        <a asp-action="Edit" class="btn btn-warning btn-edit mt-2">
+            <i class="bi bi-pencil-square"></i> Edit Profile
+        </a>
+
+        <hr class="my-4" />
+
+        <h5 class="section-title">
+            <i class="bi bi-gear-fill text-primary"></i> Activate Services
+        </h5>
+
+        <form asp-action="UpdateServices" method="post">
+
+            <div class="form-check form-switch mb-3">
+                <input type="checkbox"
+                       class="form-check-input"
+                       name="dnd"
+                       @(ViewBag.DND == true ? "checked" : "") />
+                <label class="form-check-label">
+                    Do Not Disturb (DND)
+                </label>
+            </div>
+
+            <div class="form-check form-switch mb-3">
+                <input type="checkbox"
+                       class="form-check-input"
+                       name="callerTune"
+                       @(ViewBag.CallerTune == true ? "checked" : "") />
+                <label class="form-check-label">
+                    Caller Tune
+                </label>
+            </div>
+
+            <button class="btn btn-primary mt-3">
+                <i class="bi bi-check-circle"></i> Update Services
+            </button>
+
+        </form>
+
+    </div>
+
+</div>

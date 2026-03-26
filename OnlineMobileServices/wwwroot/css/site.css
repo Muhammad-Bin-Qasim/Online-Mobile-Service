@@ -1,0 +1,344 @@
+:root {
+    --primary: #2563eb;
+    --gradient: linear-gradient(135deg,#2563eb,#4f46e5);
+}
+
+body {
+    background: #f1f5f9;
+    transition: .3s;
+}
+
+html, body {
+    font-family: 'Poppins', sans-serif !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+}
+
+/* DARK MODE */
+.dark-mode {
+    background: #0f172a;
+    color: white;
+}
+
+
+
+.hero {
+    background: white;
+    border-radius: 20px;
+    padding: 70px;
+    box-shadow: 0 15px 40px rgba(0,0,0,.08);
+}
+
+.dark-mode .hero {
+    background: #1e293b;
+}
+
+.card-pro {
+    border-radius: 18px;
+    padding: 30px;
+    transition: .4s;
+    background: white;
+    box-shadow: 0 8px 25px rgba(0,0,0,.08);
+}
+
+    .card-pro:hover {
+        transform: translateY(-12px);
+    }
+
+.btn-gradient {
+    background: var(--gradient);
+    color: white;
+    border: none;
+}
+
+.footer {
+    background: #020617;
+    padding: 50px;
+    color: white;
+}
+
+.dashboard-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+}
+
+    .dashboard-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    }
+
+.plan-tabs {
+    display: flex;
+    background: #eef2f7;
+    border-radius: 12px;
+    padding: 5px;
+}
+
+.tab-btn {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+    .tab-btn.active,
+    .tab-btn:focus {
+        background: #ffffff;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+.card {
+    border-radius: 18px;
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+
+/* Dropdown active item */
+.dropdown-menu .dropdown-item.active,
+.dropdown-menu .dropdown-item:hover {
+    background: linear-gradient(135deg, #facc15, #ffffff);
+    color: #1e293b !important;
+    font-weight: 600;
+}
+
+
+.custom-navbar .nav-link.active {
+    color: white !important;
+}
+
+.custom-navbar .nav-link:hover {
+    color: #ffd700 !important;
+}
+
+/* NAVBAR UNDERLINE EFFECT ONLY */
+
+.custom-navbar .nav-link {
+    position: relative;
+    color: inherit;
+}
+
+    /* Default underline hidden */
+    .custom-navbar .nav-link::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: -6px;
+        width: 0;
+        height: 3px;
+        background: white;
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+        border-radius: 10px;
+    }
+
+    /* HOVER = GOLDEN */
+    .custom-navbar .nav-link:hover::after {
+        width: 100%;
+        background: #ffd700;
+    }
+
+    /* ACTIVE = WHITE */
+    .custom-navbar .nav-link.active::after {
+        width: 100%;
+        background: white;
+    }
+
+/* ===== PREMIUM NAVBAR FIXED ===== */
+
+.custom-navbar {
+    background: var(--gradient) !important;
+}
+
+    /* FORCE ALL NAVBAR TEXT WHITE */
+    .custom-navbar .navbar-brand,
+    .custom-navbar .nav-link,
+    .custom-navbar .navbar-toggler {
+        color: white !important;
+    }
+
+/* Keep toggler icon white */
+.navbar-dark .navbar-toggler-icon {
+    filter: brightness(0) invert(1);
+}
+
+/* Nav links styling */
+.custom-navbar .nav-link {
+    position: relative;
+    font-weight: 500;
+    margin-left: 15px;
+    transition: color 0.3s ease;
+}
+
+    /* Hover text color GOLD */
+    .custom-navbar .nav-link:hover {
+        color: #ffd700 !important;
+    }
+
+    /* Animated underline base */
+    .custom-navbar .nav-link::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: -6px;
+        width: 0;
+        height: 3px;
+        background: white;
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+        border-radius: 10px;
+    }
+
+    /* Hover underline GOLD */
+    .custom-navbar .nav-link:hover::after {
+        width: 100%;
+        background: #ffd700;
+    }
+
+    /* Active underline WHITE */
+    .custom-navbar .nav-link.active::after {
+        width: 100%;
+        background: white;
+    }
+
+/* ===== DROPDOWN ===== */
+
+.dropdown-menu {
+    border-radius: 14px;
+    border: none;
+    padding: 10px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+.dropdown-item {
+    border-radius: 10px;
+    transition: all 0.2s ease;
+}
+
+    /* Dropdown hover */
+    .dropdown-item:hover {
+        background: var(--gradient);
+        color: white !important;
+    }
+
+/* Logout button fix */
+.nav-link.btn {
+    color: white !important;
+    text-decoration: none;
+}
+
+/* =========================
+   HERO SECTION MODERN UI
+========================= */
+
+.hero-section {
+    background: linear-gradient(135deg, #f4f7ff, #e6eeff);
+    border-radius: 20px;
+    margin: 40px 0;
+    padding: 70px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Floating Image */
+.hero-img {
+    max-height: 350px;
+    animation: floatImage 4s ease-in-out infinite;
+}
+
+@keyframes floatImage {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* =========================
+   SERVICES SECTION
+========================= */
+
+.services-section {
+    background: linear-gradient(135deg, #f4f7ff, #e9f0ff);
+    border-radius: 20px;
+}
+
+.services-heading {
+    position: relative;
+    font-size: 32px;
+}
+
+    .services-heading::after {
+        content: "";
+        display: block;
+        width: 80px;
+        height: 4px;
+        margin: 12px auto 0;
+        background: linear-gradient(90deg, #0d6efd, #3b82f6);
+        border-radius: 10px;
+    }
+
+/* Service Card Premium */
+.service-card {
+    border-radius: 20px;
+    border: none;
+    background: white;
+    overflow: hidden;
+    transition: 0.4s;
+}
+
+    .service-card:hover {
+        transform: translateY(-15px) scale(1.03);
+        box-shadow: 0 20px 40px rgba(13,110,253,0.25);
+    }
+
+/* Icon Style */
+.service-icon {
+    font-size: 45px;
+    transition: 0.4s;
+}
+
+.service-card:hover .service-icon {
+    transform: scale(1.2) rotate(8deg);
+}
+
+.hero-img {
+    max-height: 380px;
+    animation: floatImage 4s ease-in-out infinite;
+}
+
+@keyframes floatImage {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-18px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}

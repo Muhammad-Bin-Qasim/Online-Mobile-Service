@@ -1,0 +1,24 @@
+﻿@model OnlineMobileServices.Models.ApplicationUser
+
+<h2>Edit Profile</h2>
+
+<div class="card p-4 shadow">
+
+    <form asp-action="Edit" method="post">
+
+        <div class="mb-3">
+            <label class="form-label">Full Name</label>
+            <input asp-for="FullName" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Phone Number</label>
+            <input asp-for="PhoneNumber" class="form-control" />
+        </div>
+
+        <button class="btn btn-success">Save Changes</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+
+    </form>
+
+</div>

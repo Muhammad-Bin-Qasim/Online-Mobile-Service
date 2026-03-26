@@ -1,0 +1,25 @@
+﻿@model List<OnlineMobileServices.Models.Transaction>
+
+<h2>All Transactions</h2>
+<div class="table-responsive">
+<table class="table table-bordered">
+    <tr>
+        <th>Date</th>
+        <th>Mobile</th>
+        <th>Type</th>
+        <th>Amount</th>
+        <th>Status</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Date</td>
+            <td>@item.MobileNumber</td>
+            <td>@item.TransactionType</td>
+            <td>@item.Amount</td>
+            <td>@item.Status</td>
+        </tr>
+    }
+</table>
+</div>

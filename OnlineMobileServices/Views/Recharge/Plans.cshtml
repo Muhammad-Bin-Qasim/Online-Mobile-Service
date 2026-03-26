@@ -1,0 +1,121 @@
+﻿@model IEnumerable<OnlineMobileServices.Models.RechargePlan>
+
+<div class="container mt-4">
+
+    <div class="card shadow-lg border-0 rounded-4 p-4">
+
+        <h4 class="fw-bold mb-1">Select a Plan</h4>
+        <p class="text-muted">
+            Choose the best plan for @ViewBag.Mobile
+        </p>
+
+        <!-- SEGMENTED TABS -->
+        <ul class="nav nav-pills mb-4" role="tablist">
+
+            <li class="nav-item">
+                <button class="nav-link active"
+                        data-bs-toggle="pill"
+                        data-bs-target="#topup"
+                        type="button">
+                    Top-Up Recharge
+                </button>
+            </li>
+
+            <li class="nav-item">
+                <button class="nav-link"
+                        data-bs-toggle="pill"
+                        data-bs-target="#special"
+                        type="button">
+                    Special Recharge
+                </button>
+            </li>
+
+        </ul>
+
+        <div class="tab-content">
+
+            <!-- 🔵 TOPUP -->
+            <div class="tab-pane fade show active" id="topup">
+                <div class="table-responsive">
+                <table class="table align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Plan Name</th>
+                            <th>Validity</th>
+                            <th>Amount</th>
+                            <th class="text-end">Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var plan in Model.Where(p => p.PlanType == "TopUp"))
+                        {
+                            <tr>
+                                <td>@plan.Description</td>
+
+                                <td>Unlimited</td>
+
+                                <td class="fw-bold text-primary">
+                                    Rs @plan.Amount
+                                </td>
+
+                                <td class="text-end">
+                                    <a class="btn btn-primary px-4"
+                                       asp-action="Pay"
+                                       asp-route-id="@plan.PlanId"
+                                       asp-route-mobile="@ViewBag.Mobile">
+                                        Select
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                </div>
+            </div>
+
+            <!-- 🟣 SPECIAL -->
+            <div class="tab-pane fade" id="special">
+                <div class="table-responsive">
+                <table class="table align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Plan Name</th>
+                            <th>Validity</th>
+                            <th>Amount</th>
+                            <th class="text-end">Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var plan in Model.Where(p => p.PlanType == "Special"))
+                        {
+                            <tr>
+                                <td>@plan.Description</td>
+
+                                <td>28 Days</td>
+
+                                <td class="fw-bold text-primary">
+                                    Rs @plan.Amount
+                                </td>
+
+                                <td class="text-end">
+                                    <a class="btn btn-primary px-4"
+                                       asp-action="Pay"
+                                       asp-route-id="@plan.PlanId"
+                                       asp-route-mobile="@ViewBag.Mobile">
+                                        Select
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

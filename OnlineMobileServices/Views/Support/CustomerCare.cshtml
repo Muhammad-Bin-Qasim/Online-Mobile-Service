@@ -1,0 +1,164 @@
+﻿@{
+    ViewData["Title"] = "Customer Care";
+}
+
+<style>
+
+    .support-section {
+        padding: 60px 0;
+        text-align: center;
+    }
+
+    .support-icon {
+        width: 80px;
+        height: 80px;
+        background: #e0e7ff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+        font-size: 36px;
+        color: #2563eb;
+    }
+
+    .help-card {
+        margin: 35px auto;
+        max-width: 750px;
+        background: #fff;
+        border-radius: 12px;
+        padding: 20px 25px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        border-left: 4px solid #2563eb;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .faq-wrapper {
+        max-width: 750px;
+        margin: auto;
+        text-align: left;
+    }
+
+    .faq-title {
+        color: #2563eb;
+        font-weight: 600;
+        margin: 30px 0 15px;
+    }
+
+    .contact-btn {
+        margin-top: 30px;
+    }
+
+</style>
+
+<div class="container support-section">
+
+    <!-- HEADER -->
+    <div class="support-icon mb-3">
+        <i class="bi bi-headset"></i>
+    </div>
+
+    <h3 class="fw-bold">Customer Care Support</h3>
+    <p class="text-muted">How can we help you today?</p>
+
+    <!-- HELP CARD -->
+    <div class="help-card">
+        <div class="text-start">
+            <strong>Need immediate help?</strong><br />
+            <span class="text-muted">Call our 24/7 Toll Free Number</span>
+        </div>
+
+        <h4 class="text-primary fw-bold mb-0">
+            1800-123-4567
+        </h4>
+    </div>
+
+    <!-- FAQ -->
+    <div class="faq-wrapper">
+
+        <h5 class="faq-title">Frequently Asked Questions</h5>
+
+        <div class="accordion" id="faqAccordion">
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#faq1">
+                        My recharge failed but money was deducted
+                    </button>
+                </h2>
+                <div id="faq1" class="accordion-collapse collapse"
+                     data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Amount will be automatically refunded within 3-5 working days.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#faq2">
+                        How do I check my plan validity?
+                    </button>
+                </h2>
+                <div id="faq2" class="accordion-collapse collapse"
+                     data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Login to your account and open My Account → Active Plans.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#faq3">
+                        Can I cancel a recharge?
+                    </button>
+                </h2>
+                <div id="faq3" class="accordion-collapse collapse"
+                     data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Recharge cannot be cancelled once successfully processed.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#faq4">
+                        Is it safe to use my card here?
+                    </button>
+                </h2>
+                <div id="faq4" class="accordion-collapse collapse"
+                     data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Yes, all payments are secured using encrypted payment gateways.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- CONTACT BUTTON -->
+        <div class="text-center contact-btn">
+            <p class="text-muted">Still have questions?</p>
+
+            <a asp-controller="Support"
+               asp-action="Contact"
+               class="btn btn-primary px-4">
+                Contact Support Team
+            </a>
+        </div>
+
+    </div>
+
+</div>

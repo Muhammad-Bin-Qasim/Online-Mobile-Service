@@ -1,0 +1,145 @@
+﻿@{
+    ViewData["Title"] = "Contact Us";
+}
+
+<style>
+
+    .contact-section {
+        padding: 60px 0;
+    }
+
+    .contact-title {
+        text-align: center;
+        font-weight: 700;
+        margin-bottom: 40px;
+    }
+
+    .info-card {
+        background: #fff;
+        border-radius: 14px;
+        padding: 22px;
+        margin-bottom: 20px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+        transition: 0.3s;
+    }
+
+        .info-card:hover {
+            transform: translateY(-4px);
+        }
+
+    .info-icon {
+        font-size: 22px;
+        color: #2563eb;
+        margin-right: 10px;
+    }
+
+    .business-card {
+        background: #eef2ff;
+        border-radius: 14px;
+        padding: 25px;
+        height: 100%;
+    }
+
+    .hours-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px solid #dbeafe;
+    }
+
+        .hours-row:last-child {
+            border-bottom: none;
+        }
+
+    .note-box {
+        margin-top: 20px;
+        background: #dbeafe;
+        padding: 12px;
+        border-radius: 8px;
+        font-size: 14px;
+    }
+
+</style>
+
+<div class="container contact-section">
+
+    <h2 class="contact-title">Contact Us</h2>
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDE -->
+        <div class="col-md-6">
+
+            <div class="info-card">
+                <h6 class="fw-bold text-primary">
+                    <i class="bi bi-geo-alt info-icon"></i>
+                    Our Office
+                </h6>
+                <p class="mb-0 text-muted">
+                    123 Tech Park, Sector 5<br />
+                    Electronic City, Phase 1<br />
+                    Bangalore, KA 560100
+                </p>
+            </div>
+
+            <div class="info-card">
+                <h6 class="fw-bold text-primary">
+                    <i class="bi bi-telephone info-icon"></i>
+                    Phone
+                </h6>
+                <p class="mb-0 text-muted">
+                    Toll Free: 1800-123-4567<br />
+                    Support: +91 98765 43210
+                </p>
+            </div>
+
+            <div class="info-card">
+                <h6 class="fw-bold text-primary">
+                    <i class="bi bi-envelope info-icon"></i>
+                    Email
+                </h6>
+                <p class="mb-0 text-muted">
+                    General: info@onlinemobile.com<br />
+                    Support: help@onlinemobile.com
+                </p>
+            </div>
+
+        </div>
+
+        <!-- RIGHT SIDE -->
+        <div class="col-md-6">
+
+            <div class="business-card">
+
+                <h5 class="fw-bold mb-3 text-primary">
+                    <i class="bi bi-clock me-2"></i>
+                    Business Hours
+                </h5>
+
+                <div class="hours-row">
+                    <span>Monday - Friday</span>
+                    <span>9:00 AM - 8:00 PM</span>
+                </div>
+
+                <div class="hours-row">
+                    <span>Saturday</span>
+                    <span>10:00 AM - 6:00 PM</span>
+                </div>
+
+                <div class="hours-row">
+                    <span>Sunday</span>
+                    <span class="text-muted">Closed</span>
+                </div>
+
+                <div class="note-box">
+                    <i class="bi bi-info-circle me-2"></i>
+                    Our online services are available 24/7.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

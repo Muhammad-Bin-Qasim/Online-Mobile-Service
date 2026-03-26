@@ -1,0 +1,214 @@
+﻿@{
+    ViewData["Title"] = "Bill Payment";
+}
+
+<style>
+    body {
+        background-color: #f4f6f9;
+    }
+
+    .payment-card {
+        max-width: 500px;
+        margin: 60px auto;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        background: white;
+        overflow: hidden;
+    }
+
+    .payment-header {
+        background: linear-gradient(90deg, #7c3aed, #9333ea);
+        color: white;
+        padding: 15px 20px;
+        font-weight: 600;
+    }
+
+    .payment-body {
+        padding: 25px;
+    }
+
+    .amount-box {
+        background: #f3e8ff;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+
+    .form-control {
+        border-radius: 8px;
+        padding: 10px;
+    }
+
+    .pay-btn {
+        background-color: #16a34a;
+        color: white;
+        font-weight: 600;
+        border-radius: 8px;
+        padding: 12px;
+    }
+
+    .spinner-border {
+        display: none;
+        margin-left: 10px;
+    }
+
+    .success-animation {
+        display: none;
+        text-align: center;
+        padding: 30px;
+    }
+
+    .checkmark {
+        font-size: 60px;
+        color: #16a34a;
+        animation: pop 0.5s ease-in-out;
+    }
+
+    @@keyframes pop {
+        0% {
+            transform: scale(0);
+        }
+
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    .pay-btn:hover {
+        background-color: #15803d !important;
+        color: white !important;
+    }
+
+    .ssl-text {
+        text-align: center;
+        font-size: 13px;
+        color: gray;
+        margin-top: 15px;
+    }
+</style>
+
+<div class="card payment-card">
+
+    <!-- HEADER -->
+    <div class="payment-header">
+        <i class="bi bi-shield-lock-fill me-2"></i>
+        Bill Payment Gateway
+    </div>
+
+    <div class="payment-body" id="paymentForm">
+
+        <!-- BILL INFO -->
+        <div class="amount-box">
+            <div>
+                <i class="bi bi-phone me-1"></i>
+                Mobile: <strong>@ViewBag.Mobile</strong>
+            </div>
+
+            <div>
+                <i class="bi bi-cash-stack me-1"></i>
+                Bill Amount:
+                <strong>Rs @ViewBag.Amount</strong>
+            </div>
+        </div>
+
+        <form id="payForm"
+              asp-action="ConfirmBill"
+              asp-controller="Bill"
+              method="post">
+
+            @Html.AntiForgeryToken()
+
+            <input type="hidden" name="mobile" value="@ViewBag.Mobile" />
+            <input type="hidden" name="amount" value="@ViewBag.Amount" />
+
+            <!-- CARD -->
+            <div class="mb-3">
+                <label class="form-label">
+                    <i class="bi bi-credit-card me-1"></i>
+                    Card Number
+                </label>
+                <input id="cardNumber"
+                       class="form-control"
+                       maxlength="19"
+                       placeholder="0000 0000 0000 0000"
+                       required />
+            </div>
+
+            <!-- EXPIRY + CVV -->
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">
+                        <i class="bi bi-calendar-event me-1"></i>
+                        Expiry
+                    </label>
+                    <input class="form-control" placeholder="MM/YY" required />
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">
+                        <i class="bi bi-shield-lock me-1"></i>
+                        CVV
+                    </label>
+                    <input class="form-control" maxlength="3" required />
+                </div>
+            </div>
+
+            <!-- PAY BUTTON -->
+            <button type="button" id="payBtn" class="btn pay-btn w-100">
+                <i class="bi bi-lock-fill me-2"></i>
+                Pay Now Rs @ViewBag.Amount
+                <span id="spinner" class="spinner-border spinner-border-sm"></span>
+            </button>
+
+        </form>
+
+        <div class="ssl-text">
+            <i class="bi bi-patch-check-fill me-1"></i>
+            256-bit Secure SSL Connection
+        </div>
+    </div>
+
+    <!-- SUCCESS ANIMATION -->
+    <div id="successBox" class="success-animation">
+        <i class="bi bi-check-circle-fill checkmark"></i>
+        <h4 class="mt-3 text-success">Bill Paid Successfully!</h4>
+        <p>Redirecting to receipt...</p>
+    </div>
+
+</div>
+
+<script>
+    // Card Format
+    document.getElementById('cardNumber').addEventListener('input', function (e) {
+        let value = e.target.value.replace(/\D/g, '');
+        value = value.substring(0, 16);
+        let formatted = value.match(/.{1,4}/g);
+        e.target.value = formatted ? formatted.join(' ') : '';
+    });
+
+    const payBtn = document.getElementById("payBtn");
+    const form = document.getElementById("payForm");
+    const spinner = document.getElementById("spinner");
+
+    payBtn.addEventListener("click", function () {
+
+        if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+        }
+
+        payBtn.disabled = true;
+        spinner.style.display = "inline-block";
+
+        setTimeout(function () {
+
+            document.getElementById("paymentForm").style.display = "none";
+            document.getElementById("successBox").style.display = "block";
+
+            setTimeout(function () {
+                form.submit();
+            }, 1500);
+
+        }, 2000);
+    });
+</script>

@@ -1,0 +1,122 @@
+﻿@{
+    ViewData["Title"] = "Site Map";
+}
+
+<style>
+    body {
+        background-color: #f3f4f6;
+    }
+
+    .sitemap-container {
+        max-width: 1100px;
+        margin: 70px auto;
+    }
+
+    .sitemap-heading {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .sitemap-card {
+        background: white;
+        padding: 25px;
+        border-radius: 14px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        transition: 0.3s ease;
+        height: 100%;
+    }
+
+        .sitemap-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .sitemap-card h5 {
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .sitemap-card ul {
+            padding-left: 0;
+            list-style: none;
+        }
+
+            .sitemap-card ul li {
+                margin-bottom: 12px;
+            }
+
+                .sitemap-card ul li a {
+                    text-decoration: none;
+                    color: #0d6efd;
+                    font-weight: 500;
+                    transition: 0.2s;
+                }
+
+                    .sitemap-card ul li a:hover {
+                        color: #2563eb;
+                        padding-left: 5px;
+                    }
+
+    .icon-title {
+        font-size: 20px;
+        margin-right: 8px;
+        color: #0d6efd;
+    }
+</style>
+
+<div class="sitemap-container">
+
+    <div class="sitemap-heading">
+        <h2 class="fw-bold">
+            <i class="bi bi-diagram-3-fill me-2"></i>Site Map
+        </h2>
+        <p class="text-muted">Quick access to all pages of Online Mobile Services</p>
+    </div>
+
+    <div class="row g-4">
+
+        <!-- MAIN -->
+        <div class="col-12 col-md-4">
+            <div class="sitemap-card">
+                <h5>
+                    <i class="bi bi-house-fill icon-title"></i>Main Pages
+                </h5>
+                <ul>
+                    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li><a asp-controller="Recharge" asp-action="Index">Online Recharge</a></li>
+                    <li><a asp-controller="Bill" asp-action="Index">Post Bill Payment</a></li>
+                    <li><a asp-controller="Account" asp-action="Index">My Account</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SUPPORT -->
+        <div class="col-12 col-md-4">
+            <div class="sitemap-card">
+                <h5>
+                    <i class="bi bi-headset icon-title"></i>Support
+                </h5>
+                <ul>
+                    <li><a asp-controller="Support" asp-action="Contact">Contact Us</a></li>
+                    <li><a asp-controller="Home" asp-action="About">About Us</a></li>
+                    <li><a asp-controller="Support" asp-action="CustomerCare">Customer Care</a></li>
+                    <li><a asp-controller="Support" asp-action="Feedback">Feedback</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ACCOUNT -->
+        <div class="col-12 col-md-4">
+            <div class="sitemap-card">
+                <h5>
+                    <i class="bi bi-person-circle icon-title"></i>Account
+                </h5>
+                <ul>
+                    <li><a asp-area="Identity" asp-page="/Account/Login">Login</a></li>
+                    <li><a asp-area="Identity" asp-page="/Account/Register">Register</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
